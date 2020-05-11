@@ -11,10 +11,12 @@ $(document).keypress(function(event) {
 });
 
 function initPattern() {
-	createPattern(level);
 	setTimeout(function() {
-		gameStart = true;
-	}, 500 * level);
+		createPattern(level);
+		setTimeout(function() {
+			gameStart = true;
+		}, 500 * level);
+	}, 500);
 }
 
 function createPattern(currentRep) {
@@ -23,7 +25,7 @@ function createPattern(currentRep) {
 
 	gamePattern.push(currentColor);
 	playSound(currentColor);
-	animatedPress($("button").eq(randomIndex));
+	$("button").eq(randomIndex).fadeIn(100).fadeOut(100).fadeIn(100);
 
 	setTimeout(function() {
 		if (currentRep > 0) {
@@ -46,7 +48,7 @@ function animatedPress(btn) {
 	btn.addClass("pressed");
 	setTimeout(function() {
 		btn.removeClass("pressed");
-	}, 100);
+	}, 200);
 }
 
 function nextLevel() {
